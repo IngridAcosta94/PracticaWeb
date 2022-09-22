@@ -1,0 +1,51 @@
+<!-- [formGroup]="form"-->
+<form [formGroup]="formpost" (ngSubmit)="EditPlayer(formpost.value)">
+    <mat-dialog-content style="display: contents;">
+
+        <div style="text-align: center;">
+            <h2>Datos por actualizar</h2>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="row">
+            <!--Aqui ira el imput de imagen-->
+            <!-- <div class="col-md-4">
+                        <img src="" alt="" id="image-selected" height="150px" width="150px">
+                        <input #logo id="input-file" accept="image/*" class="inp1" type="file">
+                    </div> -->
+
+            <div class="col-2"></div>
+            <div class="col-8" style="text-align: -webkit-center;">
+                <div style="border-style: dotted; height: 205px; width:240px" class="col-12">
+                    <img [src]="imageSrc" *ngIf="imageSrc" style="height: 200px; width:200px">
+                </div>
+                <div>
+                    <input #file id="file" type="file" style="color: transparent; border: 0px;padding-left: 35px;"
+                        class="inp1 form-control" (change)="onFileChange($event, file.value )">
+                </div>
+                
+            </div>
+            <div class="col-2"></div>
+            <div class="col-2"></div>
+            <div class="col-8" style="text-align: center;">                
+                <mat-form-field style="display: block;">
+                    <!--formControlName="Manager"-->
+                    <mat-label>CURP*</mat-label>
+                    <input matInput placeholder="CURP*" formControlName="CURP">
+                </mat-form-field>
+                
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions style="flex-direction: row-reverse;">
+        <div>
+            <button mat-flat-button color="primary" type="submit">Guardar</button>
+            <button mat-flat-button color="warn" [mat-dialog-close]="true">Cancelar</button>
+        </div>
+    </mat-dialog-actions>
+
+
+</form>

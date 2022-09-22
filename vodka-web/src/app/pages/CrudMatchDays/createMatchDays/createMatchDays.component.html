@@ -1,0 +1,96 @@
+<div class="header pb-8 pt-5 pt-md-8">
+    <div class="container-fluid" style="background-color: #F0F3F4 ;">
+        <form [formGroup]="matchDayForm" >
+            <hr style="border-color:white; margin-bottom:20px; margin-top:-30px;">
+            <div class="container margincomponent">
+                <div class="row">
+                    <div class="col-8"></div>
+                    <div class="col-4 buttonconf" style="text-align: end;">
+                       
+                        <p>
+                            <mat-form-field appearance="fill">
+                              <!-- <mat-label>Fill form field</mat-label> -->
+                              <input formControlName="numberMathDays"  matInput placeholder="Cantidad elementos">
+                              <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                              <!-- <mat-hint>Hint</mat-hint> -->
+                            </mat-form-field>
+                          </p>
+                        
+                        <a (click)="addPlayerForm()" class="btn btn-primary" style="margin-right: 20px; color: white;"
+                            mat-raised-button>
+                            Agregar
+                        </a>
+
+                       
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <form [formGroup]="form" (ngSubmit)="addPlayer()">
+            <br>
+            <div class="row">
+                <div class="col">
+                    <div class="card shadow">
+                        <div class="card-header border-0">
+                            <h3 class="mb-0">Jornadas</h3>
+                        </div>
+                       
+                        <div class="header-body" formArrayName="MatchDays">
+                            <!-- Card stats -->
+                            <div class="row" >
+                    
+                              <div *ngFor="let item of MatchDays.controls; let i=index " [formGroupName]="i" class="tarjeta titulocard">
+                                <div class="container">
+                                  <div class="row">
+                                    
+                                    <div>
+                                      <button (click)="removeFormInput(i)" id="btn-remove" class="btn col-2"
+                                       style="white-space: nowrap;"><i class="fa fa-trash"></i></button>
+                                    </div>
+                                    
+                                  </div>
+                                  <hr style="margin-top:0px ;">
+                                </div>
+                                <div class="body">
+                                  <!--Aqui ira el logo-->
+                    
+                                  <div class="bodycard">
+                                   <mat-form-field appearance="legacy" [style.width.px]=100>
+                    
+                                     <input formControlName="m_name" matInput placeholder="Nombre">
+                                   </mat-form-field></div>
+                                  <div class="bodycard">
+                                  <mat-form-field appearance="legacy" [style.width.px]=100>
+                                  <input formControlName="m_descr" matInput placeholder="Descripción">
+                                  </mat-form-field></div>
+                    
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" mat-raised-button>
+                Guardar
+            </button>
+        </form>
+
+
+        <!-- <input class="add-products-button" type="button" value="+" (click)="addProduct()"> -->
+        <!-- <div *ngFor="let item of test.controls; let i=index">
+            <div [formGroup]="childTest">
+                 <input type="text" formControlName="inputRandom">
+            </div>
+        </div> -->
+
+    </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+    <!-- Table -->
+
+</div>

@@ -1,0 +1,86 @@
+<div class="header pb-8 pt-5 pt-md-8">
+
+  <div class="container-fluid" style="background-color: #F0F3F4 ;">
+
+    <hr style="border-color:white; margin-bottom:20px; margin-top:-30px;">
+    <div class="container margincomponent">
+      <div class="row">
+        <div class="col-10"></div>
+        <button class="btn btn-primary" style="color: white;" mat-raised-button (click)="openDialog()">
+          Nuevo
+        </button>
+      </div>
+    </div>
+
+
+    <form [formGroup]="form">
+      <div class="margincomponent">
+        <!--FILTRO  [formGroup]="form"  -->
+        <!-- <form [formGroup]="form"> -->
+        <div class="form-group mb-0">
+          <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-search"></i></span>
+            </div>
+            <!--FILTRO  formControlName="filtro"  -->
+            <input formControlName="t_name" class="form-control" placeholder="Buscar" type="text">
+          </div>
+        </div>
+        <!-- </form> -->
+      </div>
+
+      <form style="margin-bottom: 10px;" [formGroup]="pagina" *ngIf="pagination">
+        <div class="container">
+          <div class="row">
+            <div class="col-2">
+              <input hidden formControlName="linkprev">
+              <div><a type="button" style="color:dimgrey;" (click)="obtenerLinkPrev()" class="btn nextprevious"><i
+                    class="fas fa-arrow-left"></i> Anterior</a></div>
+            </div>
+            <div class="col-8"></div>
+            <div class="col-2">
+              <input hidden name="url" formControlName="link">
+              <div><a type="button"  style="color:dimgrey;" (click)="obtenerLink()" class="btn nextprevious">Siguiente <i
+                    class="fas fa-arrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+
+      </form>
+
+      <div class="header-body">
+        <!-- Card stats -->
+        <div class="row" *ngIf="teams">
+
+          <div *ngFor="let item of teams" class="tarjeta titulocard">
+            <div class="container">
+              <div class="row">
+                <div class="title col-7" style="align-self: center;">{{item.t_name}}</div>
+                <div>
+                  <button (click)="openDialogEdit(item.id)" class="btn col-2" style="white-space: nowrap; padding: 8px;"><i class="fa fa-pen"></i></button>
+                  <button class="btn col-2" style="white-space: nowrap; padding: 8px;"><i class="fa fa-trash"></i></button>
+                </div>
+                
+              </div>
+              <hr style="margin-top:0px ;">
+            </div>
+            <div class="body">
+              <!--Aqui ira el logo-->
+              <div class="imagencard">
+                <img style=" width: 150px" src="https://ligasabatinadefutbol.com.mx/media/bearleague/{{item.t_emblem}}"
+                  alt="sample">
+              </div>
+
+              <div class="bodycard"><label>{{item.t_descr}}</label></div>
+              <div class="bodycard"><label>{{item.t_city}}</label></div>
+
+            </div>
+            <div class="pie">
+              <a href="#">Detalles</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

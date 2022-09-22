@@ -1,0 +1,141 @@
+<div class="header pb-8 pt-5 pt-md-8">
+
+    <div class="container-fluid" style="background-color: #F0F3F4 ;">
+      <form >
+        <hr style="border-color:white; margin-bottom:20px; margin-top:-30px;">
+        <div class="container margincomponent">
+          <div class="row">
+            <div class="col-6">
+              
+            </div>
+            <div class="col-6"></div>
+          </div>
+          <div class="row">
+  
+            <div class="col-6">
+              
+            </div>
+            <div class="col-6 buttonconf">
+              <button class="btn btn-primary" (click)="AddPlayersActive()" type="submit" mat-raised-button>
+                Guardar
+              </button>
+            </div>
+          </div>
+        </div>
+        <hr>
+  
+        <div class="container">
+          <div class="row">
+            <div cdkDropList #ln1="cdkDropList" [cdkDropListData]="players" [cdkDropListConnectedTo]="ln2"
+              style="background-color: #C1272E ;" class="col-3 borderContainer">
+              <div style="text-align:center ; padding-top: 10px;">
+                <h4 style="color:white;">Seleccionar</h4>
+              </div>
+  
+              <form>
+                <div class="form-group mb-0 col-12" style="margin-top:10px; padding-left: 10px; padding-right: 10px;">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" style="padding-right: 10px;"><i class="fas fa-search"></i></span>
+                    </div>
+                    <!--FILTRO  formControlName="filtro"  -->
+                    <input formControlName="first_name" class="form-control" placeholder="Buscar" type="text">
+                  </div>
+                </div>
+              </form>
+  
+  
+              <div class="header-body">
+                <div style="text-align: center; color: white; margin-top: 10px;">
+                  <!-- <mat-checkbox formControlName="masterSelected" name="list_name" value="m1"
+                  (change)="checkUncheckAll()">
+                   Seleccionar todo
+                  </mat-checkbox> -->
+                </div>
+                <!-- Card stats -->
+                <div class="row scrollback" style="justify-content: center; overflow-y: scroll; height: 40rem;"
+                  *ngIf="players">
+  
+                  <div cdkDrag *ngFor="let item of players" class="tarjeta titulocard"
+                    style="margin-top: 20px; height: 250px;">
+                    <div class="container">
+                      <div class="row">
+                        <div class="title col-10" style="align-self: center; padding-left: 10px;">{{item.first_name}}</div>
+  
+                        
+                      </div>
+                      <hr style="margin-top:0px ;">
+                    </div>
+                    <div class="body">
+                      <!--Aqui ira el logo-->
+                      <div class="imagencard">
+                        <p>Aquí ira la imagen</p>
+                        <!-- <img style=" width: 100px"
+                          src="https://ligasabatinadefutbol.com.mx/media/bearleague/{{item.t_emblem}}" alt="sample"> -->
+                      </div>
+                      <div class="bodycard"><label>{{item.nick}}</label></div>
+                      <div class="bodycard"><label>{{item.player_number}}</label></div>
+  
+                    </div>
+                    <!-- <div class="pie">
+                                    <a href="#">Detalles</a>
+                                  </div> -->
+                  </div>
+                </div>
+              </div>
+  
+  
+            </div>
+  
+            <div cdkDropList #ln2="cdkDropList" [cdkDropListEnterPredicate]="noReturnPredicate" [cdkDropListData]="playersSelected" [cdkDropListConnectedTo]="ln1"
+              (cdkDropListDropped)="drop($event)" class="col-9" style="background-color:white ;">
+              <div style="text-align:center; padding-top: 15px;">
+                <h4 style="color:black ;">Lista de seleccionados</h4>
+              </div>
+  
+  
+              <div class="header-body">
+                <!-- Card stats -->
+                <div class="row" style="justify-content: center;" *ngIf="playersSelected">
+  
+                  <div cdkDrag *ngFor="let item of playersSelected" class="tarjeta titulocard"
+                    style="padding: 10px; margin-right: 10px;">
+                    <div class="container">
+                      <div class="row">
+                        <div class="title col-10" style="align-self: center; padding-left: 10px;">{{item.first_name}}</div>
+  
+                        <button (click)="deleteItem(item.id)" class="btn col-2" style="white-space: nowrap;"><i
+                            class="fa fa-trash"></i></button>
+                      </div>
+                      <hr style="margin-top:0px ;">
+                    </div>
+                    <div class="body">
+                      <!--Aqui ira el logo-->
+                      <div class="imagencard">
+                        <p>Aquí ira la imagen</p>
+                        <!-- <img style=" width: 100px"
+                          src="https://ligasabatinadefutbol.com.mx/media/bearleague/{{item.t_emblem}}" alt="sample"> -->
+                      </div> 
+  
+                      <div class="bodycard"><label>{{item.nick}}</label></div>
+                      <div class="bodycard"><label>{{item.player_number}}</label></div>
+  
+                    </div>
+                    <!-- <div class="pie">
+                                  <a href="#">Detalles</a>
+                                </div> -->
+                  </div>
+                </div>
+              </div>
+  
+  
+            </div>
+          </div>
+        </div>
+  
+  
+  
+  
+      </form>
+    </div>
+  </div>

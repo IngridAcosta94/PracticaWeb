@@ -1,0 +1,78 @@
+
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <ng-container >
+          <table  class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Image</th>
+                <th scope="col">Description</th>
+                <th scope="col">PlayerEvent</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr  *ngFor="let item of events">
+                <th >{{item.id}}</th>
+                <td>{{item.e_name}}</td>
+                <td>{{item.e_img}}</td>
+                <td>{{item.e_descr}}</td>
+                <td>{{item.player_event}}</td>
+               
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
+
+
+        <table  class="table">
+          <thead>
+            <tr>
+              <th scope="col">Id </th>
+              <th scope="col">Id Player</th>
+              <th scope="col">Match Id</th>
+              <th scope="col">Ecount</th>
+              <th scope="col">PlayerEvent</th>
+              <th scope="col">Minutes</th>
+              <th scope="col"> T id</th>
+              <th scope="col">Id</th>
+             
+            </tr>
+          </thead>
+          <tbody>
+            <tr  *ngFor="let item of matchEvents">
+              <th >{{item.e_id}}</th>
+              <td>{{item. player_id}}</td>
+              <td>{{item. match_id}}</td>
+              <td>{{item.ecount}}</td>
+              <td>{{item.minutes}}</td>
+              <td>{{item. t_id}}</td>
+              <td>{{item.id}}</td>
+              
+            </tr>
+          </tbody>
+        </table>
+        <!--
+
+e_id: number;
+  player_id: number;
+  match_id: number;
+  ecount: number;
+  minutes: string;
+  t_id: number;
+  id: number;
+
+
+
+        -->
+      </div>
+    </div>
+  </div>
+</div>
+
+

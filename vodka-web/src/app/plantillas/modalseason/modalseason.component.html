@@ -1,0 +1,189 @@
+<form [formGroup]="formpost" (ngSubmit)="addStorageSeason(formpost.value)">
+  <mat-dialog-content style="display: contents;">
+
+    <div style="text-align:center;">
+      <h3 style="color: black;">Configuraciones</h3>
+    </div>
+
+
+    <mat-tab-group [selectedIndex]="active" (selectedIndexChange)="onTabChange($event)">
+      <mat-tab label="General">
+        <div class="row">
+          <div class="col-">
+            <mat-form-field>
+              <mat-label>Descripción*</mat-label>
+              <!--formControlName="Phone"-->
+              <textarea matInput formControlName="s_descr">  </textarea>
+              <!-- <input matInput type="" formControlName="Description"> -->
+            </mat-form-field>
+          </div>
+          <div class="col-"></div>
+        </div>
+
+        <div class="row" style="margin-bottom: 20px;">
+          <div class="col-12">
+            <ol class="switches">
+              <li>
+                <input formControlName="s_groups" type="checkbox" id="1">
+                <label for="1">
+                  <span>Permitir grupos</span>
+                  <span></span>
+                </label>
+              </li>
+              <li>
+                <input formControlName="s_enbl_extra" (click)="toggleShow()" type="checkbox" id="2">
+                <label for="2">
+                  <span>Permitir tiempos extra</span>
+                  <span></span>
+                </label>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="container borderContainer">
+          <div class="row borderupmodal" style="background-color: #C1272E;">
+            <div style="text-align: center;" class="col-12">
+              <p style="color: white ;">Puntos por victoria</p>
+            </div>
+          </div>
+          <div class="row borderdownmodal" style="background-color: #F0F3F4; padding-left: 15px;">
+            <div class="col-3">
+              <p style="color:black ;">
+                <mat-form-field appearance="legacy" [style.width.px]=100>
+                  <mat-label>Local:</mat-label>
+                  <input  formControlName="s_win_away" matInput placeholder="0 pts">
+                </mat-form-field>
+              </p>
+            </div>
+            <div class="col-6">
+
+            </div>
+            <div class="col-3">
+              <p style="color:black ;">
+                <mat-form-field appearance="legacy" [style.width.px]=100>
+                  <mat-label>Visitante:</mat-label>
+                  <input  formControlName="s_win_point" matInput placeholder="0 pts">
+                </mat-form-field>
+              </p>
+            </div>
+
+          </div>
+        </div>
+        <br>
+        <div class="container borderContainer">
+          <div class="row borderupmodal" style="background-color: #C1272E; ">
+            <div style="text-align: center;" class="col-12">
+              <p style="color: white ;">Puntos por empate</p>
+            </div>
+          </div>
+          <div class="row borderdownmodal" style="background-color: #F0F3F4; padding-left: 15px;">
+            <div class="col-3">
+              <p style="color:black ;">
+                <mat-form-field appearance="legacy" [style.width.px]=100>
+                  <mat-label>Local:</mat-label>
+                  <input formControlName="s_draw_point" matInput placeholder="0 pts">
+                </mat-form-field>
+              </p>
+            </div>
+            <div class="col-6">
+
+            </div>
+            <div class="col-3">
+              <p style="color:black ;">
+                <mat-form-field appearance="legacy" [style.width.px]=100>
+                  <mat-label>Visitante:</mat-label>
+                  <input formControlName="s_draw_away" matInput placeholder="0 pts">
+                </mat-form-field>
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <br>
+        <div class="container borderContainer">
+          <div class="row borderupmodal" style="background-color: #C1272E;">
+            <div style="text-align: center;" class="col-12">
+              <p style="color: white ;">Puntos por derrota</p>
+            </div>
+          </div>
+          <div class="row borderdownmodal" style="background-color: #F0F3F4; padding-left: 15px;">
+            <div class="col-3">
+              <p style="color:black ;">
+                <mat-form-field appearance="legacy" [style.width.px]=100>
+                  <mat-label>Local:</mat-label>
+                  <input formControlName="s_lost_point" matInput placeholder="0 pts">
+                </mat-form-field>
+              </p>
+            </div>
+            <div class="col-6">
+
+            </div>
+            <div class="col-3">
+              <p style="color:black ;">
+                <mat-form-field appearance="legacy" [style.width.px]=100>
+                  <mat-label>Visitante:</mat-label>
+                  <input formControlName="s_lost_away" matInput placeholder="0 pts">
+                </mat-form-field>
+              </p>
+            </div>
+
+          </div>
+
+
+        </div>
+        <br>
+        <!--ESTE UNICAMENTE DEBE APARECER SI PERMITIR TIEMPOS EXTRA ESTA EN ON-->
+        <div *ngIf="isShown" class="container borderContainer">
+          <div class="row borderupmodal" style="background-color: #C1272E;">
+            <div style="text-align: center;" class="col-12">
+              <p style="color: white ;">Puntos en tiempo extra</p>
+            </div>
+          </div>
+          <div class="row borderdownmodal" style="background-color: #F0F3F4; padding-left: 15px;">
+            <div class="col-3">
+              <p style="color:black ;">
+                <mat-form-field appearance="legacy" [style.width.px]=100>
+                  <mat-label>Local:</mat-label>
+                  <input formControlName="s_extra_win" matInput placeholder="0 pts">
+                </mat-form-field>
+              </p>
+            </div>
+            <div class="col-6">
+
+            </div>
+            <div class="col-3">
+              <p style="color:black ;">
+                <mat-form-field appearance="legacy" [style.width.px]=100>
+                  <mat-label>Visitante:</mat-label>
+                  <input formControlName="s_extra_lost" matInput placeholder="0 pts">
+                </mat-form-field>
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+        <!------------------------------------------------------------------------>
+      </mat-tab>
+      <mat-tab label="Colores">
+
+      </mat-tab>
+    </mat-tab-group>
+
+
+    <br>
+
+
+
+  </mat-dialog-content>
+  <mat-dialog-actions style="flex-direction: row-reverse;">
+    <div>
+      <button mat-flat-button color="primary" type="submit">Guardar</button>
+      <button mat-flat-button color="warn" [mat-dialog-close]="true">Cancelar</button>
+    </div>
+  </mat-dialog-actions>
+
+
+</form>

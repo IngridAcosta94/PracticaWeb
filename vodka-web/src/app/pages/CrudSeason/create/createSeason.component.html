@@ -1,0 +1,164 @@
+<div class="header pb-8 pt-5 pt-md-8">
+
+  <div class="container-fluid" style="background-color: #F0F3F4 ;">
+    <form [formGroup]="formpost" (ngSubmit)="addSeason(formpost.value)">
+      <hr style="border-color:white; margin-bottom:20px; margin-top:-30px;">
+      <div class="container margincomponent">
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field appearance="outline">
+              <!--formControlName="Manager"-->
+              <mat-label>Nombre del torneo*</mat-label>
+              <input matInput placeholder="Nombre del torneo*" formControlName="s_name">
+            </mat-form-field>
+          </div>
+          <div class="col-6"></div>
+        </div>
+        <div class="row">
+
+          <div class="col-6">
+            <ol class="switches">
+              <li>
+                <input formControlName="published" type="checkbox" id="3">
+                <label for="3">
+                  <span>Publicado</span>
+                  <span></span>
+                </label>
+              </li>
+            </ol>
+          </div>
+          <div class="col-6 buttonconf">
+            <a class="btn btn-primary" style="margin-right: 20px; color: white;" mat-raised-button
+              (click)="openDialog()">
+              Configuraciones
+            </a>
+
+            <button class="btn btn-primary" type="submit" mat-raised-button>
+              Guardar
+            </button>
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <div class="container">
+        <div class="row">
+          <div cdkDropList #ln1="cdkDropList" [cdkDropListData]="teams" [cdkDropListConnectedTo]="ln2"
+            style="background-color: #C1272E ;" class="col-3 borderContainer">
+            <div style="text-align:center ; padding-top: 10px;">
+              <h4 style="color:white;">Seleccionar</h4>
+            </div>
+
+            <form [formGroup]="form">
+              <div class="form-group mb-0 col-12" style="margin-top:10px; padding-left: 10px; padding-right: 10px;">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" style="padding-right: 10px;"><i class="fas fa-search"></i></span>
+                  </div>
+                  <!--FILTRO  formControlName="filtro"  -->
+                  <input formControlName="t_name" class="form-control" placeholder="Buscar" type="text">
+                </div>
+              </div>
+            </form>
+
+
+            <div class="header-body">
+              <div style="text-align: center; color: white; margin-top: 10px;">
+                <mat-checkbox formControlName="masterSelected" name="list_name" value="m1"
+                (change)="checkUncheckAll()">
+                 Seleccionar todo
+                </mat-checkbox>
+              </div>
+              <!-- Card stats -->
+              <div class="row scrollback" style="justify-content: center; overflow-y: scroll; height: 40rem;"
+                *ngIf="teams">
+
+                <div cdkDrag *ngFor="let item of teams" class="tarjeta titulocard"
+                  style="margin-top: 20px; height: 250px;">
+                  <div class="container">
+                    <div class="row">
+                      <div class="title col-10" style="align-self: center; padding-left: 10px;">{{item.t_name}}</div>
+
+                      <button class="btn col-2" style="white-space: nowrap;"><i class="fa fa-pen"></i></button>
+                    </div>
+                    <hr style="margin-top:0px ;">
+                  </div>
+                  <div class="body">
+                    <!--Aqui ira el logo-->
+                    <div class="imagencard">
+                      <img style=" width: 100px"
+                        src="https://ligasabatinadefutbol.com.mx/media/bearleague/{{item.t_emblem}}" alt="sample">
+                    </div>
+
+                    <mat-checkbox hidden class="example-margin"  (change)="isAllSelected()" formControlName="isSelected" value="{{item.id}}" >
+
+                      {{ item.id }}
+                    </mat-checkbox>
+
+
+                    
+                    <div class="bodycard"><label>{{item.t_descr}}</label></div>
+                    <div class="bodycard"><label>{{item.t_city}}</label></div>
+
+                  </div>
+                  <!-- <div class="pie">
+                                  <a href="#">Detalles</a>
+                                </div> -->
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div cdkDropList #ln2="cdkDropList" [cdkDropListData]="teamsSelected" [cdkDropListConnectedTo]="ln1"
+            (cdkDropListDropped)="drop($event)" class="col-9" style="background-color:white ;">
+            <div style="text-align:center; padding-top: 15px;">
+              <h4 style="color:black ;">Lista de seleccionados</h4>
+            </div>
+
+
+            <div class="header-body">
+              <!-- Card stats -->
+              <div class="row" style="justify-content: center;" *ngIf="teamsSelected">
+
+                <div cdkDrag *ngFor="let item of teamsSelected" class="tarjeta titulocard"
+                  style="padding: 10px; margin-right: 10px;">
+                  <div class="container">
+                    <div class="row">
+                      <div class="title col-10" style="align-self: center; padding-left: 10px;">{{item.t_name}}</div>
+
+                      <button (click)="deleteItem(item.id)" class="btn col-2" style="white-space: nowrap;"><i
+                          class="fa fa-trash"></i></button>
+                    </div>
+                    <hr style="margin-top:0px ;">
+                  </div>
+                  <div class="body">
+                    <!--Aqui ira el logo-->
+                    <div class="imagencard">
+                      <img style=" width: 100px"
+                        src="https://ligasabatinadefutbol.com.mx/media/bearleague/{{item.t_emblem}}" alt="sample">
+                    </div>
+
+                    <div class="bodycard"><label>{{item.t_descr}}</label></div>
+                    <div class="bodycard"><label>{{item.t_city}}</label></div>
+
+                  </div>
+                  <!-- <div class="pie">
+                                <a href="#">Detalles</a>
+                              </div> -->
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </form>
+  </div>
+</div>

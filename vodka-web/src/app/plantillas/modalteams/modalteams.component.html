@@ -1,0 +1,82 @@
+<!-- [formGroup]="form"-->
+<form [formGroup]="formpost" (ngSubmit)="AddTeams(formpost.value)">
+    <mat-dialog-content style="display: contents;">
+
+        <div style="text-align: center;">
+            <h2>Registro de equipo</h2>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="row" style="flex-wrap: nowrap;">
+            <!--Aqui ira el imput de imagen-->
+            <!-- <div class="col-md-4">
+                        <img src="" alt="" id="image-selected" height="150px" width="150px">
+                        <input #logo id="input-file" accept="image/*" class="inp1" type="file">
+                    </div> -->
+
+                    
+            <div class="col-m-4">
+                <div style="border-style: dotted; height: 205px; width:240px" class="col-12">
+                    <img [src]="imageSrc" *ngIf="imageSrc" style="height: 200px; width:200px">
+                    <!--src="https://ligasabatinadefutbol.com.mx/media/bearleague/{{item.t_emblem}}"-->
+                </div>
+                <div>
+                    <input formControlName="file" id="file" type="file" style="color: transparent"
+                        class="inp1 form-control" (change)="onFileChange($event)">
+                </div>
+                <div *ngIf="f['file'].touched && f['file'].invalid" class="alert alert-danger">
+                    <div *ngIf="f['file'].errors && f['file'].errors['required']">El archivo es requerido.</div>
+                </div>
+            </div>
+            <div class="col-m-1"></div>
+            <div class="col-m-7" style="text-align: center;">
+
+                <input hidden formControlName="id" >
+                <input hidden formControlName="def_img" >
+                <mat-form-field>
+                    <!--formControlName="Manager"-->
+                    <mat-label>Nombre del equipo*</mat-label>
+                    <input matInput placeholder="Representante*" formControlName="t_name">
+                </mat-form-field>
+                <mat-form-field>
+                    <!--formControlName="Manager"-->
+                    <mat-label>Representante*</mat-label>
+                    <input matInput placeholder="Representante*" formControlName="Manager">
+                </mat-form-field>
+                <mat-form-field>
+                    <!--formControlName="Email"-->
+                    <mat-label>Correo*</mat-label>
+                    <input matInput formControlName="Email">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Telefono*</mat-label>
+                    <!--formControlName="Phone"-->
+                    <input matInput formControlName="Phone">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Ciudad*</mat-label>
+                    <!--formControlName="Phone"-->
+                    <input matInput formControlName="t_city">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Reseña*</mat-label>
+                    <!--formControlName="Phone"-->
+                    <textarea matInput formControlName="t_descr"></textarea>
+                    <!-- <input matInput type="" formControlName="Description"> -->
+                </mat-form-field>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions style="flex-direction: row-reverse;">
+        <div>
+            <button mat-flat-button color="primary" type="submit">Guardar</button>
+            <button mat-flat-button color="warn" [mat-dialog-close]="true">Cancelar</button>
+        </div>
+    </mat-dialog-actions>
+
+
+</form>

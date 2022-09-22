@@ -1,0 +1,95 @@
+<div class="header pb-8 pt-5 pt-md-8">
+
+    <div class="container-fluid" style="background-color: #F0F3F4 ;">
+
+        <hr style="border-color:white; margin-bottom:20px; margin-top:-30px;">
+        <div class="container margincomponent">
+            <div class="row">
+                <div class="col-10"></div>
+                <a (click)="createPdf()" class="btn btn-primary" style="color: white;" mat-raised-button>
+                    Generar reporte
+                </a>
+            </div>
+        </div>
+        <hr>
+
+        <form [formGroup]="form" id="pdfTable" #pdfTable>
+
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-2">
+
+                    <div style="border-style: dotted; height: 105px; width:140px" class="col-12">
+                        <img [src]="imageSrc" *ngIf="imageSrc" style="height: 200px; width:200px">
+                    </div>
+
+                </div>
+                <div class="col-6">
+                    <h3>Cedula de inscripción: Aqui ira el nombre del torneo</h3>
+                    <h3>Nombre del equipo:</h3>
+                    <div class="row">
+                        <div class="col-6">
+                            <h3>Representante:</h3>
+                        </div>
+                        <div class="col-6">
+                            <h3>Firma:</h3>
+                        </div>
+                    </div>
+                    <h3>Suplente:</h3>
+                </div>
+                <div class="col-3">
+
+                    <div style="border-style: dotted; height: 105px; width:140px" class="col-12">
+                        <img [src]="imageSrc" *ngIf="imageSrc" style="height: 200px; width:200px">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <h3>Información de contacto</h3>
+                    <div class="row" style="border: solid; border-size:1px;">
+                        <div class="col-6">
+                            <h3>Correo electronico:</h3>
+                        </div>
+                        <div class="col-6">
+                            <h3>Celular:</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1"></div>
+            </div>
+
+            <div class="header-body">
+                <!-- Card stats -->
+                <div class="row" *ngIf="players">
+                    <div *ngFor="let item of players" class="tarjeta titulocard">
+                        <div class="hero"
+                            style=" background-image: url('https://w7.pngwing.com/pngs/151/231/png-transparent-logo-football-football-logo-blue-other-emblem.png')">
+                            <div class="row">
+                                <div class="col-4" style="padding-top:8px ; padding-left: 8px;">
+                                    <div style="border-style: dotted; height: 105px; width:140px" class="col-12">
+                                        <img [src]="imageSrc" *ngIf="imageSrc" style="height: 200px; width:200px">
+                                    </div>
+                                </div>
+                                <div class="col-8" style="padding-left: 8px; padding-top: 8px;">
+                                    <div style="text-align:right; padding-top:3px ; padding-right: 8px;"><label>1</label></div>
+                                    <div><label>{{item.first_name}}</label></div>
+                                    <div><label>{{item.last_name}}</label>
+                                    </div>
+                                    <div><label>{{item.player_number}}</label></div>
+                                    <div><label>Posición:</label></div>
+                                    <div><label>Equipo:</label></div>
+                                </div>
+                                <div class="col-12" style="padding-left: 8px;">
+                                    <div><label>Firma:</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
